@@ -54,7 +54,10 @@ COMPILACIÓN DEL PROYECTO
 Una vez que los archivos están organizados en las carpetas correspondientes (include, src, data), el proyecto puede compilarse desde la terminal.
 Dentro de la carpeta principal del proyecto, el comando a usar es:
 
- g++ -Iinclude src/grafo.cpp src/main.cpp -o grafo
+antes de poner el comando debemos entrar a ProyectoGrafos de la siguiente manera: cd ProyectoGrafos
+
+luego
+g++ -Iinclude src/grafo.cpp src/main.cpp -o grafo
 
 Esto generará el ejecutable llamado “grafos”.
 
