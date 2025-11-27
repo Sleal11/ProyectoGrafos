@@ -121,3 +121,25 @@ void Grafo::caminoMasCorto(int inicio) {
     delete[] distancia;
     delete[] visitado;
 }
+
+void Grafo::cargarDesdeCSV(const char* archivoCSV) {
+    ifstream archivo(archivoCSV);
+    if (!archivo) {
+        cout << "No se pudo abrir el archivo CSV. Asegúrese de que el archivo exista en la ruta correcta.\n";
+        return;
+    }
+
+    int origen, destino, peso;
+    char coma;
+    string linea;
+
+    while (getline(archivo, linea)) {
+        if (linea.empty() || linea[0] == '/') continue; 
+        istringstream ss(linea);
+        ss >> origen >> coma >> destino >> coma >> peso;
+        agregarArista(origen, destino, peso);
+    }
+
+    archivo.close();
+}
+
