@@ -63,3 +63,61 @@ void Grafo::recorridoAnchura(int inicio) {
     delete[] visitado;
     delete[] cola;
 }
+
+void Grafo::recorridoProfundidadRecursivo(int nodo, bool* visitado) {
+    visitado[nodo] = true;
+    cout << nodo << " ";
+
+    for (NodoLista* aux = listaAdyacencia[nodo]; aux; aux = aux->siguiente) {
+        if (!visitado[aux->destino])
+            recorridoProfundidadRecursivo(aux->destino, visitado);
+    }
+}
+
+void Grafo::recorridoProfundidad(int inicio) {
+    bool* visitado = new bool[cantidadNodos];
+    for (int i = 0; i < cantidadNodos; i++) visitado[i] = false;
+
+    recorridoProfundidadRecursivo(inicio, visitado);
+    cout << "\n";
+
+    delete[] visitado;
+}
+
+void Grafo::caminoMasCorto(int inicio) {
+    int* distancia = new int[cantidadNodos];
+    bool* visitado = new bool[cantidadNodos];
+
+    for (int i = 0; i < cantidadNodos; i++) {
+        distancia[i] = numeric_limits<int>::max();
+        visitado[i] = false;
+    }
+
+    distancia[inicio] = 0;
+
+    for (int k = 0; k < cantidadNodos; k++) {
+        int nodoActual = -1;
+        int mejorDistancia = numeric_limits<int>::max();
+
+        for (int i = 0; i < cantidadNodos; i++) {
+            if (!visitado[i] && distancia[i] < mejorDistancia) {
+                mejorDistancia = distancia[i];
+                nodoActual = i;
+            }
+        }
+
+        if (nodoActual == -1) break;
+        visitado[nodoActual] = true;
+
+        for (NodoLista* aux = listaAdyacencia[nodoActual]; aux; aux = aux->siguiente) {
+            if (distancia[nodoActual] != numeric_limits<int>::max() && distancia[nodoActual] + aux->peso < distancia[aux->destino])
+                distancia[aux->destino] = distancia[nodoActual] + aux->peso;
+        }
+    }
+
+    for (int i = 0; i < cantidadNodos; i++)
+        cout << "Distancia a " << i << ": " << distancia[i] << "\n";
+
+    delete[] distancia;
+    delete[] visitado;
+}
