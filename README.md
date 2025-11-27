@@ -57,7 +57,7 @@ Dentro de la carpeta principal del proyecto, el comando a usar es:
 antes de poner el comando debemos entrar a ProyectoGrafos de la siguiente manera: cd ProyectoGrafos
 
 luego
-g++ -Iinclude src/grafo.cpp src/main.cpp -o grafo
+g++ src/grafo.cpp src/main.cpp -o grafo.exe
 
 Esto generará el ejecutable llamado “grafos”.
 
@@ -65,7 +65,7 @@ EJECUCIÓN DEL PROYECTO
 
 Para ejecutar el programa, primero asegurarse de que el archivo grafos.csv se encuentra dentro de la carpeta “data”. Luego, simplemente se usa:
 
-./grafos
+.\grafo.exe
 
 Al ejecutar, el programa cargará el archivo CSV automáticamente y mostrará:
 
