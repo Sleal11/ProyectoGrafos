@@ -1,1 +1,14 @@
+// Primer número: nodo de origen
+// Segundo número: nodo de destino
+// Tercer número: peso de la arista
 
+0,1,2
+0,2,4
+1,3,1
+2,4,3
+3,5,2
+4,5,1
+5,6,5
+6,7,2
+7,8,3
+8,9,1
